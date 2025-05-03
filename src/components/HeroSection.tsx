@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from 'react';
 import { Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useSpring, animated } from '@react-spring/web';
-import ThreeDScene from './ThreeDScene';
 
 const HeroSection: React.FC = () => {
   const nameRef = useRef<HTMLDivElement>(null);
@@ -60,11 +59,6 @@ const HeroSection: React.FC = () => {
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative py-20 px-4">
-      {/* 3D Scene in background */}
-      <div className="absolute inset-0 z-0">
-        <ThreeDScene />
-      </div>
-      
       {/* Main Hero Content */}
       <div className="text-center max-w-4xl mx-auto z-10 mt-20">
         <animated.div style={fadeIn}>
