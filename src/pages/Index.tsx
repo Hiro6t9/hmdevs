@@ -1,12 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
 
-const Index = () => {
+import React, { useEffect } from 'react';
+import HeroSection from '../components/HeroSection';
+import AboutSection from '../components/AboutSection';
+import ProjectsSection from '../components/ProjectsSection';
+import ContactSection from '../components/ContactSection';
+import Footer from '../components/Footer';
+import ParticleBackground from '../components/ParticleBackground';
+import GradientBlobs from '../components/GradientBlobs';
+import ThemeToggle from '../components/ThemeToggle';
+import Navigation from '../components/Navigation';
+
+const Index: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Mayu & Hiro | Love & Code';
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen relative overflow-x-hidden">
+      <ParticleBackground />
+      <GradientBlobs />
+      <ThemeToggle />
+      <Navigation />
+      
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <ProjectsSection />
+        <ContactSection />
+      </main>
+      
+      <Footer />
     </div>
   );
 };
