@@ -6,6 +6,7 @@ import { Heart, Menu, X } from 'lucide-react';
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [animationComplete, setAnimationComplete] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,10 +14,21 @@ const Navigation: React.FC = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+    
+    // Add animation complete flag after initial render
+    const timer = setTimeout(() => {
+      setAnimationComplete(true);
+    }, 500);
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
     };
   }, []);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <nav 
@@ -29,7 +41,7 @@ const Navigation: React.FC = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center space-x-2 text-couple-rose-pink"
+            className={`flex items-center space-x-2 text-couple-rose-pink transition-opacity duration-500 ${animationComplete ? 'opacity-100' : 'opacity-0'}`}
             onClick={() => setIsOpen(false)}
           >
             <Heart className="w-6 h-6 animate-heartbeat" />
@@ -46,8 +58,8 @@ const Navigation: React.FC = () => {
 
           {/* Mobile Navigation Toggle */}
           <button 
-            className="md:hidden p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
-            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 transition-transform hover:scale-105 active:scale-95"
+            onClick={toggleMenu}
             aria-label="Toggle menu"
           >
             {isOpen ? (

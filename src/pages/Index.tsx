@@ -9,6 +9,7 @@ import ParticleBackground from '../components/ParticleBackground';
 import GradientBlobs from '../components/GradientBlobs';
 import ThemeToggle from '../components/ThemeToggle';
 import Navigation from '../components/Navigation';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 const Index: React.FC = () => {
   useEffect(() => {
@@ -17,6 +18,7 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
+      <LoadingAnimation />
       <ParticleBackground />
       <GradientBlobs />
       <ThemeToggle />
