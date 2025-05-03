@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Calendar, Code, Sparkles, Coffee } from 'lucide-react';
+import { Calendar, Code, Sparkles, Coffee, Heart } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
   const [activeCard, setActiveCard] = useState<'mayu' | 'hiro' | null>(null);
