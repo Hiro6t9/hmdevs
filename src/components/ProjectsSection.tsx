@@ -26,21 +26,22 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: "E-commerce Dashboard",
-    description: "A modern dashboard for managing online store with analytics and inventory tracking.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80",
-    tags: ["React", "TypeScript", "shadcn/ui", "Recharts", "REST API"],
+    title: "HEXRA.CLOUD",
+    description: "A free and paid Minecraft server hosting and cheap VPS hosting service.",
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Node.js", "AWS", "Docker"],
     githubUrl: "https://github.com",
-    liveUrl: "#",
+    liveUrl: "https://hexra.cloud",
     developer: "mayu"
   },
   {
     id: 3,
-    title: "Booking System API",
-    description: "Backend API for a restaurant booking system with real-time availability.",
-    image: "https://images.unsplash.com/photo-1623282033815-40b05d96c903?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80",
-    tags: ["Node.js", "Express", "PostgreSQL", "Docker", "WebSockets"],
+    title: "HEXRA.CLOUD",
+    description: "Backend infrastructure for Minecraft server hosting with containerization and VPS management.",
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80",
+    tags: ["Node.js", "Express", "Docker", "Kubernetes", "AWS", "Infrastructure"],
     githubUrl: "https://github.com",
+    liveUrl: "https://hexra.cloud",
     developer: "hiro"
   }
 ];
