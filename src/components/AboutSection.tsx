@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Calendar, Code, Sparkles, Coffee, Heart } from 'lucide-react';
+import { useSpring, animated } from '@react-spring/web';
 
 const AboutSection: React.FC = () => {
   const [activeCard, setActiveCard] = useState<'mayu' | 'hiro' | null>(null);
@@ -9,6 +10,29 @@ const AboutSection: React.FC = () => {
     setActiveCard(activeCard === card ? null : card);
   };
   
+  const mayuCardSpring = useSpring({
+    scale: activeCard === 'mayu' ? 1.05 : activeCard === 'hiro' ? 0.95 : 1,
+    opacity: activeCard === 'hiro' ? 0.8 : 1,
+    config: { tension: 300, friction: 30 }
+  });
+  
+  const hiroCardSpring = useSpring({
+    scale: activeCard === 'hiro' ? 1.05 : activeCard === 'mayu' ? 0.95 : 1,
+    opacity: activeCard === 'mayu' ? 0.8 : 1,
+    config: { tension: 300, friction: 30 }
+  });
+  
+  const heartSpring = useSpring({
+    from: { rotate: 0 },
+    to: async (next) => {
+      while (true) {
+        await next({ rotate: -15 });
+        await next({ rotate: 15 });
+      }
+    },
+    config: { duration: 1000, friction: 10 }
+  });
+
   return (
     <section id="about" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-6xl">
@@ -17,14 +41,13 @@ const AboutSection: React.FC = () => {
         {/* Developer cards */}
         <div className="flex flex-col md:flex-row gap-8 justify-center">
           {/* Mayu's card */}
-          <div 
-            className={`glass-card glass-card-dark p-6 md:w-80 transition-all duration-500 ${
-              activeCard === 'mayu' ? 'md:w-96 shadow-neon' : activeCard === 'hiro' ? 'md:w-72 opacity-80' : ''
-            }`}
+          <animated.div 
+            style={mayuCardSpring}
+            className="glass-card glass-card-dark p-6 md:w-80"
             onClick={() => toggleCard('mayu')}
           >
             <div className="text-center mb-4">
-              <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-couple-rose-pink to-purple-400 mb-4"></div>
+              <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-couple-rose-pink to-purple-400 mb-4 shadow-[0_0_15px_rgba(240,181,195,0.5)]"></div>
               <h3 className="text-2xl font-bold gradient-text">Mayu</h3>
               <p className="text-foreground/70">Frontend Developer</p>
             </div>
@@ -44,24 +67,26 @@ const AboutSection: React.FC = () => {
               <span className="tech-badge">Tailwind CSS</span>
               <span className="tech-badge">shadcn/ui</span>
             </div>
-          </div>
+          </animated.div>
 
           {/* Heart connector */}
           <div className="flex items-center justify-center -my-4 md:my-auto">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-couple-rose-pink to-purple-400">
-              <Heart className="w-5 h-5 text-white animate-heartbeat" />
-            </div>
+            <animated.div 
+              style={heartSpring}
+              className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-couple-rose-pink to-purple-400 shadow-[0_0_15px_rgba(240,181,195,0.5)]"
+            >
+              <Heart className="w-6 h-6 text-white" />
+            </animated.div>
           </div>
           
           {/* Hiro's card */}
-          <div 
-            className={`glass-card glass-card-dark p-6 md:w-80 transition-all duration-500 ${
-              activeCard === 'hiro' ? 'md:w-96 shadow-neon' : activeCard === 'mayu' ? 'md:w-72 opacity-80' : ''
-            }`}
+          <animated.div 
+            style={hiroCardSpring}
+            className="glass-card glass-card-dark p-6 md:w-80"
             onClick={() => toggleCard('hiro')}
           >
             <div className="text-center mb-4">
-              <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-400 to-cyan-300 mb-4"></div>
+              <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-400 to-cyan-300 mb-4 shadow-[0_0_15px_rgba(109,158,197,0.5)]"></div>
               <h3 className="text-2xl font-bold gradient-text">Hiro</h3>
               <p className="text-foreground/70">Fullstack Developer</p>
             </div>
@@ -81,7 +106,7 @@ const AboutSection: React.FC = () => {
               <span className="tech-badge">Docker</span>
               <span className="tech-badge">AWS</span>
             </div>
-          </div>
+          </animated.div>
         </div>
         
         {/* Love quote */}

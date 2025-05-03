@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
+import { useSpring, animated } from '@react-spring/web';
 
 interface Project {
   id: number;
@@ -122,14 +123,32 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const [hovered, setHovered] = useState(false);
+  
+  const cardSpring = useSpring({
+    transform: hovered ? 'scale(1.03) translateY(-10px)' : 'scale(1) translateY(0px)',
+    boxShadow: hovered 
+      ? '0 0 25px rgba(240, 181, 195, 0.5), 0 0 10px rgba(240, 181, 195, 0.3)'
+      : '0 0 5px rgba(240, 181, 195, 0.3), 0 0 20px rgba(0, 0, 0, 0.1)',
+    config: { tension: 300, friction: 20 }
+  });
+  
   return (
-    <div className="glass-card glass-card-dark overflow-hidden group transition-all duration-300 hover:shadow-neon">
+    <animated.div 
+      style={cardSpring}
+      className="glass-card glass-card-dark overflow-hidden group"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       {/* Image */}
       <div className="h-48 overflow-hidden">
         <img 
           src={project.image} 
           alt={project.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover transition-transform duration-700"
+          style={{
+            transform: hovered ? 'scale(1.1)' : 'scale(1)'
+          }}
         />
       </div>
       
@@ -196,7 +215,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           )}
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 };
 

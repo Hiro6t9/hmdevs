@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Heart, Sun, Moon } from 'lucide-react';
+import { useSpring, animated } from '@react-spring/web';
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -36,22 +37,38 @@ const ThemeToggle = () => {
     }, 300); // Delay before changing theme
   };
 
+  // Animation for the button
+  const buttonSpring = useSpring({
+    transform: isAnimating ? 'scale(1.2)' : 'scale(1)',
+    config: { tension: 300, friction: 10 }
+  });
+
+  // Animation for the icon
+  const iconSpring = useSpring({
+    rotateZ: isAnimating ? 180 : 0,
+    opacity: isAnimating ? 0.5 : 1,
+    config: { tension: 300, friction: 15 }
+  });
+
   return (
-    <button
+    <animated.button
       onClick={toggleTheme}
-      className="fixed top-4 right-4 z-50 p-2 rounded-full bg-white/10 backdrop-blur-lg 
+      style={buttonSpring}
+      className="fixed top-4 right-4 z-50 p-3 rounded-full bg-white/10 backdrop-blur-lg 
                 border border-white/20 shadow-glass transition-all duration-300 
                 hover:shadow-neon flex items-center justify-center"
       aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
     >
-      {isAnimating ? (
-        <Heart className="w-5 h-5 text-couple-rose-pink animate-heartbeat" />
-      ) : theme === 'light' ? (
-        <Sun className="w-5 h-5 text-yellow-500" />
-      ) : (
-        <Moon className="w-5 h-5 text-blue-400" />
-      )}
-    </button>
+      <animated.div style={iconSpring}>
+        {isAnimating ? (
+          <Heart className="w-5 h-5 text-couple-rose-pink" />
+        ) : theme === 'light' ? (
+          <Sun className="w-5 h-5 text-yellow-500" />
+        ) : (
+          <Moon className="w-5 h-5 text-blue-400" />
+        )}
+      </animated.div>
+    </animated.button>
   );
 };
 
