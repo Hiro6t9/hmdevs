@@ -58,43 +58,52 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative py-20 px-4">
+    <section className="min-h-screen flex flex-col justify-center items-center relative py-20 px-4 bg-couple-midnight-black">
       {/* Main Hero Content */}
       <div className="text-center max-w-4xl mx-auto z-10 mt-20">
         <animated.div style={fadeIn}>
+          <div className="mb-6 flex justify-center">
+            <img 
+              src="/lovable-uploads/8a8a2230-86a1-4492-892d-99bf8ba7c6b0.png" 
+              alt="Lovable Logo" 
+              className="w-24 h-24 object-contain"
+            />
+          </div>
+          
           <div 
             ref={nameRef}
-            className="text-5xl md:text-7xl font-bold mb-8 gradient-text animate-glow-pulse"
+            className="text-5xl md:text-7xl font-bold mb-6 text-white"
           >
-            Hiro &amp; Mayu
+            lovable
           </div>
           
-          <div className="relative mb-6 flex justify-center">
-            <animated.div style={heartBeat}>
-              <Heart className="w-12 h-12 text-couple-rose-pink drop-shadow-[0_0_15px_rgba(240,181,195,0.8)]" />
-            </animated.div>
-          </div>
-          
-          <h2 className="text-xl md:text-2xl mb-8 text-foreground/80 font-light bg-clip-text text-transparent bg-gradient-to-r from-white to-couple-rose-pink dark:from-white dark:to-couple-rose-pink">
-            Two hearts. <span className="font-medium">One codebase.</span>
+          <h2 className="text-2xl md:text-3xl mb-8 text-white font-medium">
+            Your superhuman full stack engineer.
           </h2>
           
           <div className="max-w-md mx-auto glass-card backdrop-blur-2xl p-6 mb-10 border border-white/20 shadow-glass">
-            <p className="text-lg">
-              We build beautiful digital experiences with love and code.
+            <p className="text-lg text-white/90">
+              Idea to app in seconds.
             </p>
           </div>
         </animated.div>
         
         <animated.div style={fadeInButton}>
-          <Link 
-            to="/about"
-            className="inline-flex items-center justify-center bg-gradient-to-r from-couple-rose-pink to-blue-400
-                      text-white py-3 px-8 rounded-full font-medium shadow-neon hover:shadow-neon-strong
-                      transition-all duration-300 transform hover:scale-110"
-          >
-            Enter Our World
-          </Link>
+          <div className="relative mt-6">
+            <div className="flex items-center bg-gray-800/80 border border-gray-700 rounded-full px-4 py-3 w-full max-w-md mx-auto">
+              <input 
+                type="text" 
+                placeholder="What are you building next?"
+                className="bg-transparent border-none flex-1 text-white focus:outline-none px-2"
+              />
+              <div className="bg-gray-900 rounded-full p-2 hover:bg-gray-800 transition-colors cursor-pointer">
+                <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
         </animated.div>
       </div>
 
